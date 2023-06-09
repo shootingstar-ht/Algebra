@@ -4,10 +4,10 @@ const { ETHERSCAN_API_KEY, BSCSCAN_API_KEY, POLYGONSCAN_API_KEY, MNEMONIC, DEPLO
   config.parsed || {}
 
 export default {
-	namedAccounts: {
-		deployer: 0,
-		proxyAdmin: 1,
-	},
+  namedAccounts: {
+    deployer: 0,
+    proxyAdmin: 1,
+  },
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true,
@@ -52,7 +52,13 @@ export default {
     maticTestnet: {
       url: `https://rpc-mumbai.maticvigil.com`,
       chainId: 80001,
-      accounts: [`0x${MNEMONIC || '1000000000000000000000000000000000000000000000000000000000000000'}`],
+      accounts: {
+        mnemonic: 'arrow deposit kangaroo marble proud glide special slab shy trash misery toast',
+        path: "m/44'/60'/0'/0",
+        initialIndex: 0,
+        count: 20,
+        passphrase: '',
+      },
     },
     maticMainnet: {
       url: `https://rpc-mainnet.matic.quiknode.pro`,

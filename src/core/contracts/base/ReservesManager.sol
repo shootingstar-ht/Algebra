@@ -21,31 +21,18 @@ abstract contract ReservesManager is AlgebraPoolBase {
 
   /// @dev updates reserves data and distributes excess in the form of fee to liquidity providers.
   /// If any of the balances is greater than uint128, the excess is sent to the communityVault
-  function _updateReserves(bool oneByteReserve) internal returns (uint256 balance0, uint256 balance1) {
+  function _updateReserves() internal returns (uint256 balance0, uint256 balance1) {
     (balance0, balance1) = (_balanceToken0(), _balanceToken1());
     // we do not support tokens with totalSupply > type(uint128).max, so any excess will be sent to communityVault
     // this situation can only occur if the tokens are sent directly to the pool from outside
-    if (!oneByteReserve) {
-      unchecked {
-        if (balance0 > type(uint128).max) {
-          SafeTransfer.safeTransfer(token0, communityVault, balance0 - type(uint128).max);
-          balance0 = type(uint128).max;
-        }
-        if (balance1 > type(uint128).max) {
-          SafeTransfer.safeTransfer(token1, communityVault, balance1 - type(uint128).max);
-          balance1 = type(uint128).max;
-        }
+    unchecked {
+      if (balance0 > type(uint128).max) {
+        SafeTransfer.safeTransfer(token0, communityVault, balance0 - type(uint128).max);
+        balance0 = type(uint128).max;
       }
-    } else {
-      unchecked {
-        if (balance0 > type(uint8).max) {
-          SafeTransfer.safeTransfer(token0, communityVault, balance0 - type(uint8).max);
-          balance0 = type(uint8).max;
-        }
-        if (balance1 > type(uint8).max) {
-          SafeTransfer.safeTransfer(token1, communityVault, balance1 - type(uint8).max);
-          balance1 = type(uint8).max;
-        }
+      if (balance1 > type(uint128).max) {
+        SafeTransfer.safeTransfer(token1, communityVault, balance1 - type(uint128).max);
+        balance1 = type(uint128).max;
       }
     }
 

@@ -74,7 +74,7 @@ contract AlgebraPool is
       (amount0, amount1, ) = LiquidityMath.getAmountsForLiquidity(bottomTick, topTick, int128(liquidityDesired), globalState.tick, globalState.price);
     }
 
-    (uint256 receivedAmount0, uint256 receivedAmount1) = _updateReserves(false);
+    (uint256 receivedAmount0, uint256 receivedAmount1) = _updateReserves();
     IAlgebraMintCallback(msg.sender).algebraMintCallback(amount0, amount1, data);
 
     receivedAmount0 = amount0 == 0 ? 0 : _balanceToken0() - receivedAmount0;
@@ -126,7 +126,7 @@ contract AlgebraPool is
     uint128 amount
   ) external override nonReentrant onlyValidTicks(bottomTick, topTick) returns (uint256 amount0, uint256 amount1) {
     if (amount > uint128(type(int128).max)) revert arithmeticError();
-    _updateReserves(false);
+    _updateReserves();
     Position storage position = getOrCreatePosition(msg.sender, bottomTick, topTick);
 
     int128 liquidityDelta = -int128(amount);
@@ -185,7 +185,7 @@ contract AlgebraPool is
     uint128 currentLiquidity;
     uint256 communityFee;
     (amount0, amount1, currentPrice, currentTick, currentLiquidity, communityFee) = _calculateSwap(zeroToOne, amountRequired, limitSqrtPrice);
-    (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
+    (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
     if (zeroToOne) {
       unchecked {
         if (amount1 < 0) SafeTransfer.safeTransfer(token1, recipient, uint256(-amount1));
@@ -220,7 +220,7 @@ contract AlgebraPool is
     // original caller of the transaction. And change the _amountRequired_
     {
       // scope to prevent "stack too deep"
-      (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
+      (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
       uint256 balanceBefore;
       uint256 balanceAfter;
       if (zeroToOne) {
@@ -262,7 +262,7 @@ contract AlgebraPool is
 
   /// @inheritdoc IAlgebraPoolActions
   function flash(address recipient, uint256 amount0, uint256 amount1, bytes calldata data) external override nonReentrant {
-    (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
+    (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
     uint256 fee0;
     if (amount0 > 0) {
       fee0 = FullMath.mulDivRoundingUp(amount0, Constants.BASE_FEE, Constants.FEE_DENOMINATOR);
@@ -306,7 +306,6 @@ contract AlgebraPool is
   function setCommunityFee(uint8 newCommunityFee) external override nonReentrant {
     _checkIfAdministrator();
     if (newCommunityFee > Constants.MAX_COMMUNITY_FEE || newCommunityFee == globalState.communityFee) revert invalidNewCommunityFee();
-    if (newCommunityFee == 0) _updateReserves(true);
     globalState.communityFee = newCommunityFee;
     emit CommunityFee(newCommunityFee);
   }
