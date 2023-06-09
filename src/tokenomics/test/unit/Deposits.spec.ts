@@ -22,7 +22,7 @@ import { HelperCommands, ERC20Helper, incentiveResultToFarmAdapter } from '../he
 import { ContractParams } from '../../types/contractParams'
 import { createTimeMachine } from '../shared/time'
 import { HelperTypes } from '../helpers/types'
-import { contracts } from '@cryptoalgebra/periphery/typechain'
+import { contracts } from '@alkaswap/periphery/typechain'
 
 describe('unit/Deposits', () => {
   let actors: ActorFixture

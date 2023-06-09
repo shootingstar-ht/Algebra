@@ -2,7 +2,7 @@
 pragma solidity =0.8.17;
 pragma abicoder v1;
 
-import '@cryptoalgebra/core/contracts/interfaces/IERC20Minimal.sol';
+import '@alkaswap/core/contracts/interfaces/IERC20Minimal.sol';
 
 contract TestERC20 is IERC20Minimal {
   mapping(address => uint256) public override balanceOf;

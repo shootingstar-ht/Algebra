@@ -1,17 +1,17 @@
 {
-  "name": "@cryptoalgebra/core",
-  "description": "Core smart contracts of Algebra",
+  "name": "@alkaswap/core",
+  "description": "Core smart contracts of Alkaswap",
   "license": "GPL-2.0-or-later",
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.1.0",
+  "version": "1.1.0",
   "keywords": [
-    "algebra"
+    "alkaswap"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptoalgebra/Algebra/"
+    "url": "https://github.com/alkaline-fi/Algebra/"
   },
   "files": [
     "contracts/interfaces",
@@ -25,9 +25,9 @@
   ],
   "scripts": {
     "precommit": "pretty-quick --staged --pattern **/*.sol && hardhat compile && node ../../scripts/updatePoolHash.js",
-    "compile": "hardhat compile",
+    "compile": "npm --prefix ../arbitrage run compile && hardhat compile",
     "test": "hardhat test --parallel",
-    "coverage": "hardhat coverage --solcoverjs ./.solcover.js"
+    "coverage": "npm --prefix ../arbitrage run compile && hardhat coverage --solcoverjs ./.solcover.js"
   },
   "engines": {
     "npm": ">=8.0.0",

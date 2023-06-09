@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity >=0.5.0 <0.9.0;
 
-import '@cryptoalgebra/core/contracts/libraries/FullMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IDataStorageOperator.sol';
-import '@cryptoalgebra/core/contracts/libraries/LowGasSafeMath.sol';
+import '@alkaswap/core/contracts/libraries/FullMath.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPool.sol';
+import '@alkaswap/core/contracts/interfaces/IDataStorageOperator.sol';
+import '@alkaswap/core/contracts/libraries/LowGasSafeMath.sol';
 
 import '../libraries/PoolAddress.sol';
 

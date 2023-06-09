@@ -8,17 +8,17 @@ import '../interfaces/IAlgebraEternalFarming.sol';
 import '../interfaces/IAlgebraEternalVirtualPool.sol';
 import '../interfaces/IFarmingCenter.sol';
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPoolDeployer.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraFactory.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IERC20Minimal.sol';
-import '@cryptoalgebra/core/contracts/libraries/SafeCast.sol';
-import '@cryptoalgebra/core/contracts/libraries/FullMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/Constants.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/LowGasSafeMath.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPoolDeployer.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPool.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraFactory.sol';
+import '@alkaswap/core/contracts/interfaces/IERC20Minimal.sol';
+import '@alkaswap/core/contracts/libraries/SafeCast.sol';
+import '@alkaswap/core/contracts/libraries/FullMath.sol';
+import '@alkaswap/core/contracts/libraries/Constants.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/libraries/LowGasSafeMath.sol';
 
-import '@cryptoalgebra/periphery/contracts/libraries/TransferHelper.sol';
+import '@alkaswap/periphery/contracts/libraries/TransferHelper.sol';
 
 /// @title Algebra eternal (v2-like) farming
 contract AlgebraEternalFarming is IAlgebraEternalFarming {

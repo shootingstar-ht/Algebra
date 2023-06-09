@@ -3,12 +3,12 @@ pragma solidity =0.8.17;
 
 import './interfaces/IFarmingCenter.sol';
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/interfaces/IERC20Minimal.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/IPositionFollower.sol';
-import '@cryptoalgebra/periphery/contracts/interfaces/INonfungiblePositionManager.sol';
-import '@cryptoalgebra/periphery/contracts/base/Multicall.sol';
-import '@cryptoalgebra/periphery/contracts/libraries/PoolAddress.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPool.sol';
+import '@alkaswap/core/contracts/interfaces/IERC20Minimal.sol';
+import '@alkaswap/periphery/contracts/interfaces/IPositionFollower.sol';
+import '@alkaswap/periphery/contracts/interfaces/INonfungiblePositionManager.sol';
+import '@alkaswap/periphery/contracts/base/Multicall.sol';
+import '@alkaswap/periphery/contracts/libraries/PoolAddress.sol';
 
 import './libraries/IncentiveId.sol';
 

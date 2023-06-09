@@ -23,7 +23,7 @@ import { HelperCommands, ERC20Helper, incentiveResultToFarmAdapter } from '../he
 import { ContractParams } from '../../types/contractParams'
 import { createTimeMachine } from '../shared/time'
 import { HelperTypes } from '../helpers/types'
-import { IAlgebraVirtualPool } from '@cryptoalgebra/core/typechain'
+import { IAlgebraVirtualPool } from '@alkaswap/core/typechain'
 import { AlgebraEternalFarming } from '../../typechain/contracts/farmings'
 
 describe('unit/EternalFarms', () => {

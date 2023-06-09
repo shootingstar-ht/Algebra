@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity =0.8.17;
 
-import '@cryptoalgebra/core/contracts/libraries/FullMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/Constants.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/LiquidityMath.sol';
+import '@alkaswap/core/contracts/libraries/FullMath.sol';
+import '@alkaswap/core/contracts/libraries/Constants.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/libraries/LiquidityMath.sol';
 
 import '../libraries/VirtualTickManagement.sol';
 

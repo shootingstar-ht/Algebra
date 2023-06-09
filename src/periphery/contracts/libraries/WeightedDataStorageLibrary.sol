@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 pragma solidity >=0.5.0 <0.9.0;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPool.sol';
 
-import '@cryptoalgebra/core/contracts/interfaces/IDataStorageOperator.sol';
+import '@alkaswap/core/contracts/interfaces/IDataStorageOperator.sol';
 
 /// @title Weighted DataStorage library
 /// @notice Provides functions to integrate with dataStorage of the pool
@@ -51,11 +51,9 @@ library WeightedDataStorageLibrary {
     /// If `period` differs across timepoints, the result becomes difficult to interpret and is likely biased/manipulable.
     /// If the underlying `pool` tokens differ across timepoints, extreme care must be taken to ensure that both prices and liquidity values are comparable.
     /// Even if prices are commensurate (e.g. two different USD-stable assets against ETH), liquidity values may not be, as decimals can differ between tokens.
-    function getArithmeticMeanTickWeightedByLiquidity(PeriodTimepoint[] memory timepoints)
-        internal
-        pure
-        returns (int24 arithmeticMeanWeightedTick)
-    {
+    function getArithmeticMeanTickWeightedByLiquidity(
+        PeriodTimepoint[] memory timepoints
+    ) internal pure returns (int24 arithmeticMeanWeightedTick) {
         // Accumulates the sum of all timepoints' products between each their own average tick and harmonic average liquidity
         // Each product can be stored in a int160, so it would take approximately 2**96 timepoints to overflow this accumulator
         int256 numerator;

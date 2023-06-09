@@ -18,7 +18,7 @@ function updateHash(pathToPool, files) {
 }
 
 updateHash(
-    '../src/core/artifacts/contracts/AlgebraPool.sol/AlgebraPool.json', 
+    '../artifacts/contracts/AlgebraPool.sol/AlgebraPool.json', 
     [
         '../src/periphery/contracts/libraries/PoolAddress.sol',
         '../src/core/contracts/AlgebraFactory.sol',
@@ -26,6 +26,6 @@ updateHash(
 );
 
 updateHash(
-    '../src/core/artifacts/contracts/test/simulation/SimulationTimeAlgebraPool.sol/SimulationTimeAlgebraPool.json', 
+    '../artifacts/contracts/test/simulation/SimulationTimeAlgebraPool.sol/SimulationTimeAlgebraPool.json', 
     ['../src/core/contracts/test/simulation/SimulationTimeFactory.sol']
 );

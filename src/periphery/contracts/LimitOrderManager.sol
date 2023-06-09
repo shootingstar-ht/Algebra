@@ -2,10 +2,10 @@
 pragma solidity =0.8.17;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPool.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/FullMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/Constants.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPool.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/libraries/FullMath.sol';
+import '@alkaswap/core/contracts/libraries/Constants.sol';
 
 import './interfaces/ILimitOrderManager.sol';
 import './libraries/PositionKey.sol';

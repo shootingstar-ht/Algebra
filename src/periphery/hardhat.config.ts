@@ -1,11 +1,12 @@
-import '@nomicfoundation/hardhat-toolbox';
-import 'hardhat-contract-sizer';
-import 'hardhat-watcher';
-import 'hardhat-dependency-compiler';
-import 'hardhat-contract-sizer';
-import 'solidity-coverage';
-import 'solidity-docgen';
-import baseConfig from '../../hardhat.base.config';
+import '@nomicfoundation/hardhat-toolbox'
+import 'hardhat-contract-sizer'
+import 'hardhat-watcher'
+import 'hardhat-dependency-compiler'
+import 'hardhat-contract-sizer'
+import 'hardhat-deploy'
+import 'solidity-coverage'
+import 'solidity-docgen'
+import baseConfig from '../../hardhat.base.config'
 
 const LOW_OPTIMIZER_COMPILER_SETTINGS = {
   version: '0.8.17',
@@ -48,8 +49,10 @@ const DEFAULT_COMPILER_SETTINGS = {
 }
 
 export default {
+  namedAccounts: baseConfig.namedAccounts,
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
+  paths: baseConfig.paths,
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
     overrides: {
@@ -63,17 +66,15 @@ export default {
     },
   },
   typechain: {
-    outDir: 'typechain'
+    outDir: '../../typechain',
   },
   docgen: {
     outputDir: '../../docs/Contracts/Periphery',
     pages: (x: any) => x.name.toString() + '.md',
     templates: '../../docs/doc_templates/public',
-    collapseNewlines: true
+    collapseNewlines: true,
   },
   dependencyCompiler: {
-    paths: [
-      '@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol',
-    ],
-  }
+    paths: ['@openzeppelin/contracts/proxy/transparent/TransparentUpgradeableProxy.sol'],
+  },
 }

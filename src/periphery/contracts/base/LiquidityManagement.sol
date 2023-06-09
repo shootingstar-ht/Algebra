@@ -2,9 +2,9 @@
 pragma solidity =0.8.17;
 pragma abicoder v2;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraFactory.sol';
-import '@cryptoalgebra/core/contracts/interfaces/callback/IAlgebraMintCallback.sol';
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraFactory.sol';
+import '@alkaswap/core/contracts/interfaces/callback/IAlgebraMintCallback.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
 
 import '../libraries/PoolAddress.sol';
 import '../libraries/CallbackValidation.sol';

@@ -1,15 +1,15 @@
 {
-  "name": "@cryptoalgebra/farmings",
-  "description": "Liquidity mining contracts for Algebra protocol",
+  "name": "@alkaswap/farmings",
+  "description": "Liquidity mining contracts for Alkaswap protocol",
   "license": "GPL-3.0-or-later",
-  "version": "3.0.1",
+  "version": "1.0.1",
   "keywords": [
-    "algebra",
+    "alkaswap",
     "liquidity mining"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptoalgebra/Algebra"
+    "url": "https://github.com/alkaline-fi/Algebra"
   },
   "files": [
     "contracts",
@@ -22,8 +22,8 @@
   "dependencies": {
     "@openzeppelin/contracts": "4.6.0",
     "@uniswap/v2-core": "^1.0.1",
-    "@cryptoalgebra/core": "3.1.0",
-    "@cryptoalgebra/periphery": "2.0.1"
+    "@alkaswap/core": "1.1.0",
+    "@alkaswap/periphery": "1.0.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.170",

@@ -18,7 +18,7 @@ import { expandTo18Decimals } from './shared/expandTo18Decimals'
 import { sortedTokens } from './shared/tokenSort'
 
 
-import { abi as IAlgebraPoolABI } from '@cryptoalgebra/core/artifacts/contracts/interfaces/IAlgebraPool.sol/IAlgebraPool.json'
+import { abi as IAlgebraPoolABI } from '@alkaswap/core/artifacts/contracts/interfaces/IAlgebraPool.sol/IAlgebraPool.json'
 import { token } from '../typechain/@openzeppelin/contracts'
 
 describe('LimitOrderManager', () => {

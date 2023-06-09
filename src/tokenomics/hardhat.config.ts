@@ -27,11 +27,12 @@ const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
 const config: HardhatUserConfig = {
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
+  paths: baseConfig.paths,
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
   },
   typechain: {
-    outDir: 'typechain',
+    outDir: '../../typechain',
   },
   contractSizer: {
     alphaSort: false,

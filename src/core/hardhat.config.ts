@@ -1,8 +1,9 @@
-import '@nomicfoundation/hardhat-toolbox';
-import 'hardhat-contract-sizer';
-import 'solidity-docgen';
-import { SolcUserConfig } from 'hardhat/types';
-import baseConfig from '../../hardhat.base.config';
+import '@nomicfoundation/hardhat-toolbox'
+import 'hardhat-contract-sizer'
+import 'hardhat-deploy'
+import 'solidity-docgen'
+import { SolcUserConfig } from 'hardhat/types'
+import baseConfig from '../../hardhat.base.config'
 
 const HIGHEST_OPTIMIZER_COMPILER_SETTINGS: SolcUserConfig = {
   version: '0.8.17',
@@ -43,8 +44,6 @@ const LOWEST_COMPILER_SETTINGS: SolcUserConfig = {
   },
 }
 
-
-
 if (process.env.RUN_COVERAGE == '1') {
   /**
    * Updates the default compiler settings when running coverage.
@@ -59,28 +58,30 @@ if (process.env.RUN_COVERAGE == '1') {
     },
   }
 
-  HIGHEST_OPTIMIZER_COMPILER_SETTINGS.settings.details = details;
-  DEFAULT_COMPILER_SETTINGS.settings.details = details;
+  HIGHEST_OPTIMIZER_COMPILER_SETTINGS.settings.details = details
+  DEFAULT_COMPILER_SETTINGS.settings.details = details
 }
 
 export default {
+  namedAccounts: baseConfig.namedAccounts,
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
+  paths: baseConfig.paths,
   typechain: {
-    outDir: 'typechain',
+    outDir: '../../typechain',
   },
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
     overrides: {
       'contracts/AlgebraFactory.sol': HIGHEST_OPTIMIZER_COMPILER_SETTINGS,
       'contracts/DataStorageOperator.sol': HIGHEST_OPTIMIZER_COMPILER_SETTINGS,
-      'contracts/test/simulation/SimulationTimePoolDeployer.sol': LOWEST_COMPILER_SETTINGS
+      'contracts/test/simulation/SimulationTimePoolDeployer.sol': LOWEST_COMPILER_SETTINGS,
     },
   },
   docgen: {
     outputDir: '../../docs/Contracts/Core',
     pages: (x: any) => x.name.toString() + '.md',
     templates: '../../docs/doc_templates/public',
-    collapseNewlines: true
+    collapseNewlines: true,
   },
 }

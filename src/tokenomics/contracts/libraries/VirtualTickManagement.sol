@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity =0.8.17;
 
-import '@cryptoalgebra/core/contracts/interfaces/IAlgebraPoolErrors.sol';
+import '@alkaswap/core/contracts/interfaces/IAlgebraPoolErrors.sol';
 
-import '@cryptoalgebra/core/contracts/libraries/TickMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/LiquidityMath.sol';
-import '@cryptoalgebra/core/contracts/libraries/Constants.sol';
+import '@alkaswap/core/contracts/libraries/TickMath.sol';
+import '@alkaswap/core/contracts/libraries/LiquidityMath.sol';
+import '@alkaswap/core/contracts/libraries/Constants.sol';
 
 /// @title VirtualTickManagement
 /// @notice Contains functions for managing tick processes and relevant calculations
