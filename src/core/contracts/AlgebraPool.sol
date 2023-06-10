@@ -74,7 +74,7 @@ contract AlgebraPool is
       (amount0, amount1, ) = LiquidityMath.getAmountsForLiquidity(bottomTick, topTick, int128(liquidityDesired), globalState.tick, globalState.price);
     }
 
-    (uint256 receivedAmount0, uint256 receivedAmount1) = _updateReserves();
+    (uint256 receivedAmount0, uint256 receivedAmount1) = _updateReserves(false);
     IAlgebraMintCallback(msg.sender).algebraMintCallback(amount0, amount1, data);
 
     receivedAmount0 = amount0 == 0 ? 0 : _balanceToken0() - receivedAmount0;
@@ -126,7 +126,7 @@ contract AlgebraPool is
     uint128 amount
   ) external override nonReentrant onlyValidTicks(bottomTick, topTick) returns (uint256 amount0, uint256 amount1) {
     if (amount > uint128(type(int128).max)) revert arithmeticError();
-    _updateReserves();
+    _updateReserves(false);
     Position storage position = getOrCreatePosition(msg.sender, bottomTick, topTick);
 
     int128 liquidityDelta = -int128(amount);
@@ -185,7 +185,7 @@ contract AlgebraPool is
     uint128 currentLiquidity;
     uint256 communityFee;
     (amount0, amount1, currentPrice, currentTick, currentLiquidity, communityFee) = _calculateSwap(zeroToOne, amountRequired, limitSqrtPrice);
-    (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
+    (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
     if (zeroToOne) {
       unchecked {
         if (amount1 < 0) SafeTransfer.safeTransfer(token1, recipient, uint256(-amount1));
@@ -220,7 +220,7 @@ contract AlgebraPool is
     // original caller of the transaction. And change the _amountRequired_
     {
       // scope to prevent "stack too deep"
-      (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
+      (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
       uint256 balanceBefore;
       uint256 balanceAfter;
       if (zeroToOne) {
@@ -262,7 +262,7 @@ contract AlgebraPool is
 
   /// @inheritdoc IAlgebraPoolActions
   function flash(address recipient, uint256 amount0, uint256 amount1, bytes calldata data) external override nonReentrant {
-    (uint256 balance0Before, uint256 balance1Before) = _updateReserves();
+    (uint256 balance0Before, uint256 balance1Before) = _updateReserves(false);
     uint256 fee0;
     if (amount0 > 0) {
       fee0 = FullMath.mulDivRoundingUp(amount0, Constants.BASE_FEE, Constants.FEE_DENOMINATOR);
@@ -307,19 +307,14 @@ contract AlgebraPool is
     _checkIfAdministrator();
     if (newCommunityFee > Constants.MAX_COMMUNITY_FEE || newCommunityFee == globalState.communityFee) revert invalidNewCommunityFee();
     globalState.communityFee = newCommunityFee;
+    /// @dev do not support tokens with totalSupply > type(uint8).max
+    if (newCommunityFee == 8) _updateReserves(true);
     emit CommunityFee(newCommunityFee);
   }
 
   /// @inheritdoc IAlgebraPoolPermissionedActions
   function setTickSpacing(int24 newTickSpacing, int24 newTickspacingLimitOrders) external override nonReentrant {
     _checkIfAdministrator();
-    if (
-      newTickSpacing <= 0 ||
-      newTickSpacing > Constants.MAX_TICK_SPACING ||
-      (tickSpacing == newTickSpacing && tickSpacingLimitOrders == newTickspacingLimitOrders)
-    ) revert invalidNewTickSpacing();
-    // newTickspacingLimitOrders isn't limited, so it is possible to forbid new limit orders completely
-    if (newTickspacingLimitOrders <= 0) revert invalidNewTickSpacing();
     tickSpacing = newTickSpacing;
     tickSpacingLimitOrders = newTickspacingLimitOrders;
     emit TickSpacing(newTickSpacing, newTickspacingLimitOrders);
