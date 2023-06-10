@@ -3,6 +3,7 @@ import '@nomiclabs/hardhat-ethers'
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@nomiclabs/hardhat-etherscan'
 import 'hardhat-contract-sizer'
+import 'hardhat-deploy'
 import 'solidity-coverage'
 import 'solidity-docgen'
 
@@ -25,6 +26,7 @@ const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
 }
 
 const config: HardhatUserConfig = {
+  namedAccounts: baseConfig.namedAccounts,
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
   paths: baseConfig.paths,
@@ -43,7 +45,7 @@ const config: HardhatUserConfig = {
     outputDir: '../../docs/Contracts/Tokenomics',
     pages: (x: any) => x.name.toString() + '.md',
     templates: '../../docs/doc_templates/public',
-    collapseNewlines: true
+    collapseNewlines: true,
   },
 }
 

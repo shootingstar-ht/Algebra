@@ -2,9 +2,15 @@ export default async function ({ deployments, getNamedAccounts }) {
   const { deploy } = deployments
   const { deployer, proxyAdmin } = await getNamedAccounts()
 
-  const factory = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
-  const weth = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
-  const poolDeployer = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  const factory = await deployments.get('AlgebraFactory')
+  const factoryAddress = factory.address //'0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  console.log('factory: ', { factoryAddress })
+  const weth = await deployments.get('WrappedEther')
+  const wethAddress = weth.address //'0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  console.log('weth: ', { wethAddress })
+  const poolDeployer = await deployments.get('AlgebraPoolDeployer')
+  const poolAddress = poolDeployer.address //'0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  console.log('poolDeployer: ', { poolAddress })
 
   await deploy('TickLens', {
     from: deployer,
@@ -14,13 +20,13 @@ export default async function ({ deployments, getNamedAccounts }) {
 
   await deploy('Quoter', {
     from: deployer,
-    args: [factory, weth, poolDeployer],
+    args: [factoryAddress, wethAddress, poolAddress],
     log: true,
   })
 
   await deploy('SwapRouter', {
     from: deployer,
-    args: [factory, weth, poolDeployer],
+    args: [factoryAddress, wethAddress, poolAddress],
     log: true,
   })
 
@@ -35,35 +41,26 @@ export default async function ({ deployments, getNamedAccounts }) {
     libraries: {
       NFTDescriptor: nftDescriptor.address,
     },
-    args: [weth],
-    proxy: {
-      owner: proxyAdmin,
-      proxyContract: 'TransparentUpgradeableProxy',
-    },
+    args: [wethAddress],
+    proxy: true,
     log: true,
   })
 
   const nftPositionManager = await deploy('NonfungiblePositionManager', {
     from: deployer,
-    args: [factory, weth, nftPositionDescriptor.address, poolDeployer],
+    args: [factoryAddress, wethAddress, nftPositionDescriptor.address, poolAddress],
     log: true,
   })
 
   await deploy('LimitOrderManager', {
     from: deployer,
-    args: [factory, weth, poolDeployer],
+    args: [factoryAddress, wethAddress, poolAddress],
     log: true,
   })
 
   await deploy('V3Migrator', {
     from: deployer,
-    args: [factory, weth, nftPositionManager.address, poolDeployer],
-    log: true,
-  })
-
-  await deploy('AlgebraInterfaceMulticall', {
-    from: deployer,
-    args: [],
+    args: [factoryAddress, wethAddress, nftPositionManager.address, poolAddress],
     log: true,
   })
 }

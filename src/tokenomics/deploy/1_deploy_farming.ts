@@ -2,18 +2,22 @@ export default async function ({ deployments, getNamedAccounts }) {
   const { deploy } = deployments
   const { deployer } = await getNamedAccounts()
 
-  const poolDeployer = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
-  const nftPositionManager = '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  const poolDeployer = await deployments.get('AlgebraPoolDeployer')
+  const poolAddress = poolDeployer.address //'0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  console.log('poolDeployer: ', { poolAddress })
+  const nftPositionManager = await deployments.get('NonfungiblePositionManager')
+  const nftManagerAddress = nftPositionManager.address //'0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+  console.log('nftPositionManager: ', { nftManagerAddress })
 
   const eternalFarming = await deploy('AlgebraEternalFarming', {
     from: deployer,
-    args: [poolDeployer, nftPositionManager],
+    args: [poolAddress, nftManagerAddress],
     log: true,
   })
 
   const farmCenter = await deploy('FarmingCenter', {
     from: deployer,
-    args: [eternalFarming.address, nftPositionManager],
+    args: [eternalFarming.address, nftManagerAddress],
     log: true,
   })
 
