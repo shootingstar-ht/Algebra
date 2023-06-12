@@ -3,6 +3,11 @@ const config = require('dotenv').config({ path: path.resolve(__dirname, '.env') 
 const { ETHERSCAN_API_KEY, ZKSYNC_MAINNET_MNEMONIC, ZKSYNC_TESTNET_MNEMONIC, LINEA_TESTNET_MNEMONIC } = config.parsed || {}
 
 export default {
+  zksolc: {
+    version: '1.3.10',
+    compilerSource: 'binary',
+    settings: {},
+  },
   namedAccounts: {
     deployer: 0,
     proxyAdmin: 1,
@@ -49,9 +54,8 @@ export default {
     zkLocal: {
       url: 'http://localhost:3050',
       ethNetwork: 'http://localhost:8545',
-      accounts: ['0xac1e735be8536c6534bb4f17f06f6afc73b2b5ba84ac2cfb12f7461b20c0bbe3'],
+      accounts: ['0x850683b40d4a740aa6e745f889a6fdc8327be76e122f5aba645a5b02d0248db8'],
       zksync: true,
-      gasPrice: 100_000_000,
     },
     linea: {
       url: `https://rpc.goerli.linea.build/`,
@@ -81,7 +85,9 @@ export default {
     sources: './contracts',
     tests: './test',
     cache: '../../cache',
+    'cache-zk': '../../cache-zk',
     artifacts: '../../artifacts',
+    'artifacts-zk': '../../artifacts-zk',
     deploy: './deploy',
     deployments: '../../deployments',
   },

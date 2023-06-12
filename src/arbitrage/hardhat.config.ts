@@ -2,6 +2,9 @@ import '@typechain/hardhat'
 import '@nomiclabs/hardhat-ethers'
 import '@nomicfoundation/hardhat-chai-matchers'
 import '@nomiclabs/hardhat-etherscan'
+import '@matterlabs/hardhat-zksync-solc'
+import '@matterlabs/hardhat-zksync-deploy'
+import '@matterlabs/hardhat-zksync-verify'
 import 'hardhat-contract-sizer'
 import 'hardhat-deploy'
 import 'solidity-coverage'
@@ -28,6 +31,7 @@ const config = {
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
   paths: baseConfig.paths,
+  zksolc: baseConfig.zksolc,
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
   },

@@ -1,4 +1,5 @@
 import '@nomicfoundation/hardhat-toolbox'
+import '@matterlabs/hardhat-zksync-solc'
 import 'hardhat-contract-sizer'
 import 'hardhat-watcher'
 import 'hardhat-dependency-compiler'
@@ -53,6 +54,7 @@ export default {
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
   paths: baseConfig.paths,
+  zksolc: baseConfig.zksolc,
   solidity: {
     compilers: [DEFAULT_COMPILER_SETTINGS],
     overrides: {
@@ -66,7 +68,7 @@ export default {
     },
   },
   typechain: {
-    outDir: '../../typechain',
+    outDir: './typechain',
   },
   docgen: {
     outputDir: '../../docs/Contracts/Periphery',
