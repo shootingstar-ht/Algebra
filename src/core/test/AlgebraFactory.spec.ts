@@ -1,8 +1,8 @@
 import { Wallet } from 'ethers'
 import { ethers } from 'hardhat'
 import { loadFixture, time } from '@nomicfoundation/hardhat-network-helpers';
-import { AlgebraFactory } from '../typechain/AlgebraFactory'
-import { AlgebraPoolDeployer } from "../typechain/AlgebraPoolDeployer";
+import { AlgebraFactory } from '../../../typechain/contracts/AlgebraFactory'
+import { AlgebraPoolDeployer } from "../../../typechain/contracts/AlgebraPoolDeployer";
 import { expect } from './shared/expect'
 import { ZERO_ADDRESS } from "./shared/fixtures";
 import snapshotGasCost from './shared/snapshotGasCost'

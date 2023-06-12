@@ -7,9 +7,7 @@ import 'hardhat-deploy'
 import 'solidity-coverage'
 import 'solidity-docgen'
 
-import { HardhatUserConfig } from 'hardhat/config'
 import { SolcUserConfig } from 'hardhat/types'
-
 import baseConfig from '../../hardhat.base.config'
 
 const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
@@ -25,7 +23,7 @@ const DEFAULT_COMPILER_SETTINGS: SolcUserConfig = {
   },
 }
 
-const config: HardhatUserConfig = {
+const config = {
   namedAccounts: baseConfig.namedAccounts,
   networks: baseConfig.networks,
   etherscan: baseConfig.etherscan,
@@ -34,7 +32,7 @@ const config: HardhatUserConfig = {
     compilers: [DEFAULT_COMPILER_SETTINGS],
   },
   typechain: {
-    outDir: '../../typechain',
+    outDir: './typechain',
   },
   contractSizer: {
     alphaSort: false,
@@ -42,7 +40,7 @@ const config: HardhatUserConfig = {
     runOnCompile: false,
   },
   docgen: {
-    outputDir: '../../docs/Contracts/Tokenomics',
+    outputDir: '../../docs/Contracts/Arbitrage',
     pages: (x: any) => x.name.toString() + '.md',
     templates: '../../docs/doc_templates/public',
     collapseNewlines: true,

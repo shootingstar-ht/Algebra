@@ -1,15 +1,15 @@
 import { BigNumber } from 'ethers'
 import { ethers } from 'hardhat'
-import { MockTimeAlgebraPool } from '../../typechain/test/MockTimeAlgebraPool'
-import { TestERC20 } from '../../typechain/test/TestERC20'
-import { AlgebraFactory } from '../../typechain/AlgebraFactory'
-import { AlgebraCommunityVault } from '../../typechain/AlgebraCommunityVault'
-import { DataStorageOperator } from "../../typechain/DataStorageOperator";
-import { TestAlgebraCallee } from '../../typechain/test/TestAlgebraCallee'
-import { TestAlgebraRouter } from '../../typechain/test/TestAlgebraRouter'
-import { MockTimeAlgebraPoolDeployer } from '../../typechain/test/MockTimeAlgebraPoolDeployer'
+import { MockTimeAlgebraPool } from '../../../../typechain/contracts/test/MockTimeAlgebraPool'
+import { TestERC20 } from '../../../../typechain/contracts/test/TestERC20'
+import { AlgebraFactory } from '../../../../typechain/contracts/AlgebraFactory'
+import { AlgebraCommunityVault } from '../../../../typechain/contracts/AlgebraCommunityVault'
+import { DataStorageOperator } from "../../../../typechain/contracts/DataStorageOperator";
+import { TestAlgebraCallee } from '../../../../typechain/contracts/test/TestAlgebraCallee'
+import { TestAlgebraRouter } from '../../../../typechain/contracts/test/TestAlgebraRouter'
+import { MockTimeAlgebraPoolDeployer } from '../../../../typechain/contracts/test/MockTimeAlgebraPoolDeployer'
 
-import { AlgebraPoolDeployer } from "../../typechain/AlgebraPoolDeployer";
+import { AlgebraPoolDeployer } from "../../../../typechain/contracts/AlgebraPoolDeployer";
 
 type Fixture<T> = () => Promise<T>;
 interface FactoryFixture {
